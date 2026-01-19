@@ -29,9 +29,6 @@ function setup() {
     createCanvas(500, 500);
     drawRectangle();
 
-    // //reset rect 3 when it touches the bottom
-    // resetRect3();
-
 }
 
 function draw() {
@@ -40,10 +37,14 @@ function draw() {
     //rectangles
     drawRectangle(r1X, r1Y, r1Size, r1Size, 206, 56, 156);
     drawRectangle(r2X, r2Y, r2Size, r2Size, 224, 176, 255);
-    drawRectangle(r3X, r3Y, r3Size, r3Size, 127, 0, 255);
+    drawRectangle(r3X, r3Y, r3Size, r3Size, mouseX, mouseY, 255);
 
-    // //make rect 3 move
-    // moveRect3();
+    //make rect 3 move
+    r3Y += r3Speed;
+    //reset rect 3 when it touches the bottom
+    if (r3Y > height) {
+        r3Y = 0;
+    }
 
 }
 function drawRectangle(x, y, w, h, r, g, b) { //body
@@ -53,15 +54,6 @@ function drawRectangle(x, y, w, h, r, g, b) { //body
     rect(x, y, w, h);
     pop();
 }
-
-// //Make rect 3 move down
-// function moveRect3() {
-//     r3.y += r3.speed;
-//     //reset rect 3
-//     if (r3.y > height) {
-//         resetRect3();
-//     }
-// }
 
 //Update rect 1 position when mouse is clicked
 function mouseClicked() {
