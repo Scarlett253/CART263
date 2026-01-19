@@ -18,7 +18,7 @@ const r2Height = 600;
 let r2X = 200;
 let r2Y = 0;
 
-//rectangle 3 
+//rectangle 3
 const r3Width = 200;
 const r3Height = 600;
 let r3X = 400;

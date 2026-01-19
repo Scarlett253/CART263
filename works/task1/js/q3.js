@@ -4,50 +4,50 @@
 
 "use strict";
 
-/**Rectangles set up */
+/**squares set up */
 
-//rectangle 1
-const r1Size = 50;
-let r1X = 100;
-let r1Y = 100;
+//square 1
+const s1Size = 50;
+let s1X = 100;
+let s1Y = 100;
 
-//rectangle 2
-const r2Size = 70;
-let r2X = 150;
-let r2Y = 150;
+//square 2
+const s2Size = 70;
+let s2X = 150;
+let s2Y = 150;
 
-//rectangle 3 
-const r3Size = 80;
-const r3Speed = 2;
-let r3X = 100;
-let r3Y = 220;
+//square 3 
+const s3Size = 80;
+const s3Speed = 2;
+let s3X = 100;
+let s3Y = 220;
 
 
 
 function setup() {
     console.log("go")
     createCanvas(500, 500);
-    drawRectangle();
+    drawSquare();
 
 }
 
 function draw() {
     background("#ac55e6")
 
-    //rectangles
-    drawRectangle(r1X, r1Y, r1Size, r1Size, 206, 56, 156);
-    drawRectangle(r2X, r2Y, r2Size, r2Size, 224, 176, 255);
-    drawRectangle(r3X, r3Y, r3Size, r3Size, mouseX, mouseY, 255);
+    //squares
+    drawSquare(s1X, s1Y, s1Size, s1Size, 206, 56, 156);
+    drawSquare(s2X, s2Y, s2Size, s2Size, 224, 176, 255);
+    drawSquare(s3X, s3Y, s3Size, s3Size, mouseX, mouseY, 255);
 
-    //make rect 3 move
-    r3Y += r3Speed;
-    //reset rect 3 when it touches the bottom
-    if (r3Y > height) {
-        r3Y = 0;
+    //make square 3 move
+    s3Y += s3Speed;
+    //reset square 3 when it touches the bottom
+    if (s3Y > height) {
+        s3Y = 0;
     }
 
 }
-function drawRectangle(x, y, w, h, r, g, b) { //body
+function drawSquare(x, y, w, h, r, g, b) { //body
     push();
     noStroke();
     fill(r, g, b);
@@ -55,17 +55,17 @@ function drawRectangle(x, y, w, h, r, g, b) { //body
     pop();
 }
 
-//Update rect 1 position when mouse is clicked
+//Update square 1 position when mouse is clicked
 function mouseClicked() {
-    r1X = random(0, width);
-    r1Y = random(0, height);
+    s1X = random(0, width);
+    s1Y = random(0, height);
 }
 
-//Update rect 2 position when key is pressed
+//Update square 2 position when key is pressed
 function keyPressed() {
     if (key === ' ') {//spacebar 
-        r2X = random(0, width);
-        r2Y = random(0, height);
+        s2X = random(0, width);
+        s2Y = random(0, height);
     }
 }
 
