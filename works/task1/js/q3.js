@@ -20,7 +20,7 @@ let r2Y = 150;
 const r3Size = 80;
 const r3Speed = 2;
 let r3X = 100;
-// let r3Y = 220;
+let r3Y = 220;
 
 
 
@@ -40,7 +40,7 @@ function draw() {
     //rectangles
     drawRectangle(r1X, r1Y, r1Size, r1Size, 206, 56, 156);
     drawRectangle(r2X, r2Y, r2Size, r2Size, 224, 176, 255);
-    drawRectangle(r3.x, r3.y, r3.size, r3.size, 127, 0, 255);
+    drawRectangle(r3X, r3Y, r3Size, r3Size, 127, 0, 255);
 
     // //make rect 3 move
     // moveRect3();
