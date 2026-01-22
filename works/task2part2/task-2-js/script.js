@@ -121,6 +121,16 @@ length
     /* 6: the element with id name parent */
     /***CODE */ console.log(document.getElementById("parent"));
     /***OUTPUT: 
+     * script.js:5 we are a go!
+script.js:9 NodeList(9) [p#1, p#2.img-descript, p#3.img-descript, p#4.img-descript, p#5.img-descript, p#6.img-descript, p#7.img-descript, p#8.img-descript, p#9.img-descript]
+script.js:49 <p id=​"1">​…​</p>​
+script.js:63 NodeList(8) [div.inner-container, div.inner-container, div.inner-container, div.inner-container, div.inner-container, div.inner-container, div.inner-container, div.inner-container]
+script.js:98 <img class=​"img-image" src=​"task-2-images/​sixteen.png">​
+script.js:109 NodeList [h2]
+script.js:110 1
+script.js:111  The header of this fancy page
+script.js:122 <section id=​"parent">​flex<div class=​"inner-container">​…​</div>​<div class=​"inner-container">​…​</div>​<div class=​"inner-container">​…​</div>​<div class=​"inner-container">​…​</div>​<div class=​"inner-container">​…​</div>​<div class=​"inner-container">​…​</div>​<div class=​"inner-container">​…​</div>​<div class=​"inner-container">​…​</div>​</section>​
+
      * 
      */
 
@@ -132,30 +142,32 @@ length
     /*** START PART TWO MODIFY */
     /*************************************** */
     /* 1: Select the first paragraph and replace the text within the paragraph... */
-    /***CODE */
+    /***CODE */ document.getElementById("1").textContent = "New text in paragraph one: text changed by Yvonne Scarlett Arriola Lerin on the following date: January 22,2026";
     /*************************************** */
     /* 2: Select all elements in the HTML that have the class name content-container
      and change the background color ... of first and second ...*/
-    /***CODE */
+    /***CODE */document.querySelectorAll(".content-container")[0].style.backgroundColor = "orange";
+    document.querySelectorAll(".content-container")[1].style.backgroundColor = "purple";
 
     /*************************************** */
     /* 3: Change the src element of the first image element on the page to be ...
-    /***CODE */
+    /***CODE */ document.querySelector("img").src = "task-2-images/seven.png";
 
     /*************************************** */
     /* 4: Select the third paragraph element on the page and 
     replace the content (within the paragraph) to be an h2 element which contains the text `TEST 123`
-    /***CODE */
+    /***CODE */ document.querySelectorAll("p")[2].innerHTML = "<h2>TEST 123</h2>";
 
     /*************************************** */
     /* 5: Select the fourth paragraph element on the page and 
     add to the existing content an h2 element containing the text `TEST 123`
-    /***CODE */
+    /***CODE */ document.querySelectorAll("p")[3].innerHTML += "<h2>TEST 123</h2>";
 
     /*************************************** */
     /* 6: Select the fifth paragraph element on the page and add to the existing content 
     an img element that holds `one.png`, and add the class newStyle to said paragraph element.
-    /***CODE */
+    /***CODE */ document.querySelectorAll("p")[4].innerHTML += '<img src="task-2-images/one.png" />';
+    document.querySelectorAll("p")[4].classList.add("newStyle");
 
 
     /*************************************** */
@@ -165,7 +177,12 @@ length
     assign the element from innerContainers variable with the same index 
     (i.e. colors[0] should be allocated to the first innerContainers element, colors[1] to the second, etc ...) 
     a background using that color.
-    /***CODE */
+    /***CODE */document.querySelectorAll(".inner-container");
+    let colors = ['red', 'blue', 'green', 'orange'];
+    let innerContainers = document.querySelectorAll(".inner-container");
+    for (let i = 0; i < colors.length; i++) {
+        innerContainers[i].style.backgroundColor = colors[i];
+    }
 
     /*************************************** */
     /*** END PART TWO MODIFY */
