@@ -129,19 +129,82 @@ function aniB(parentCanvas) {
  */
 
 function aniC(parentCanvas) {
-  console.log("in ani-C -teamA");
+  console.log("in aniC -teamA");
+
+  //set background color  of canvas
+  parentCanvas.style.backgroundColor = "rgb(90, 155, 199)";
+  let randomWords = ["The", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"];
 
   /*** THIS IS THE CALLBACK FOR KEY DOWN (* DO NOT CHANGE THE NAME *..) */
   windowKeyDownRef = function (e) {
     //code for key down in here
     console.log(e);
-    console.log("a-down");
+    //add a new word when we press space
+    if (e.code === "ArrowUp") {
+      console.log("c-up arrow down");
+      let newWord = document.createElement("span");
+
+
+      //make new word bounce around canvas like a DVD logo
+      parentCanvas.appendChild(newWord);
+
+      let x = Math.random() * parentCanvas.clientWidth;
+      let y = Math.random() * parentCanvas.clientHeight;
+      let speedX = 1;
+      let speedY = 1;
+
+      function moveWords() {
+        x += speedX;
+        y += speedY;
+
+        // bounce on edges
+        if (x <= 0 || x + newWord.offsetWidth >= parentCanvas.clientWidth) {
+          speedX *= -1;
+        }
+
+        if (y <= 0 || y + newWord.offsetHeight >= parentCanvas.clientHeight) {
+          speedY *= -1;
+        }
+
+        newWord.style.left = x + "px";
+        newWord.style.top = y + "px";
+
+        requestAnimationFrame(moveWords);
+      }
+
+      moveWords();
+
+
+      //make words appear at random positions
+      newWord.style.position = "absolute";
+      newWord.style.left = Math.random() * parentCanvas.clientWidth + "px";
+      newWord.style.top = Math.random() * parentCanvas.clientHeight + "px";
+      //pick a random word from the array
+      let randomIndex = Math.floor(Math.random() * randomWords.length);
+
+
+
+      newWord.textContent = randomWords[randomIndex];
+      newWord.classList.add("TEAM_A_c-word");
+      parentCanvas.appendChild(newWord);
+    }
+    //remove a word when we press backspace
+    else if (e.code === "ArrowDown") {
+      console.log("c-down arrow down");
+      let words = document.querySelectorAll(".TEAM_A_c-word");
+      if (words.length !== 0) {
+        words[words.length - 1].remove();
+      }
+    }
   };
 
   /*** THIS IS THE CALLBACK FOR KEY UP (*DO NOT CHANGE THE NAME..) */
   windowKeyUpRef = function (e) {
-    console.log("a-up");
-    console.log(e);
+    //code for key down in here
+    if (e.code === "ArrowUp") {
+      console.log("up arrow up");
+      console.log("c-up arrow up");
+    }
   };
   //DO NOT REMOVE
   window.addEventListener("keydown", windowKeyDownRef);
