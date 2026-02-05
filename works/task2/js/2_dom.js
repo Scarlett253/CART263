@@ -6,7 +6,7 @@ function setup() {
     newDivTwo.style.backgroundColor = "yellow";
     newDivTwo.querySelector("p").style.color = "black"
     // access parent element
-    let sibling = document.getElementById("#four")
+    let sibling = document.getElementById("#three")
     let parentElementAgain = document.querySelector(".wrapper_flex_box")
     parentElementAgain.insertBefore(newDivTwo, sibling);
 
