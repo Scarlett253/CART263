@@ -67,16 +67,6 @@ window.onload = function () {
             renderFlower(garden.flowers[i]);
 
         }
-
-        // add numFlowers at one time
-        for (let i = 0; i < garden.numFlowers; i++) {
-            garden.flowers.push(createFlower());
-        }
-
-        for (let i = 0; i < garden.flowers.length; i++) {
-            renderFlower(garden.flowers[i]);
-
-        }
     }
 
 
