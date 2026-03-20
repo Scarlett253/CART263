@@ -32,8 +32,9 @@ class FreeStyleObj {
   }
 
   update() {
-    if (this.analyser) {
-      this.analyser.getByteFrequencyData(this.dataArray);
+    if (window.analyser && window.dataArray) {
+      this.analyser = window.analyser;
+      this.dataArray = window.dataArray;
 
       let sum = 0;
       for (let i = 0; i < this.dataArray.length; i++) {
@@ -45,7 +46,7 @@ class FreeStyleObj {
 
     //Mic effects
     //changes
-    this.yOffset = this.volume * 0.3;
+    this.yOffset = this.volume * 0.5;
     //waves
     this.angularSpeed = 0.01 + this.volume * 0.002;
 

@@ -89,25 +89,29 @@ function go_all_stuff() {
      * -> the code for the microphone has NOT been added  - you need to implement it correctly...
      *  
      */
-    let audioContext;
-    let analyser;
-    let dataArray;
+
+    window.audioContext = null;
+    window.analyser = null;
+    window.dataArray = null;
 
     async function setupMic() {
-        const stream = await navigatormediaDevices.getUserMedia({ audio: true });
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
-        audioContext = new AudioContext();
-        const source = audioContext.createMediaStreamSource(stream);
+        window.audioContext = new AudioContext();
+        const source = window.audioContext.createMediaStreamSource(stream);
 
-        analyser = audioContext.createAnalyser();
-        analyser.fftSize = 256;
+        window.analyser = window.audioContext.createAnalyser();
+        window.analyser.fftSize = 256;
 
-        source.connect(analyser);
+        source.connect(window.analyser);
 
-        const bufferLength = analyser.frequencyBinCount;
-        dataArray = new Uint8Array(bufferLength);
+        const bufferLength = window.analyser.frequencyBinCount;
+        window.dataArray = new Uint8Array(bufferLength);
+
+        console.log("MIC WORKING 🎤");
     }
-    //Play mic on first click
+
+    // start mic on first click
     window.addEventListener("click", function () {
         setupMic();
     }, { once: true });
