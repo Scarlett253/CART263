@@ -1,5 +1,5 @@
 class FreeStyleObj {
-  constructor(x, y, length, f_color, s_color, context, analyser, dataArray) {
+  constructor(x, y, length, f_color, s_color, context) {
     // We write instructions to set up a Flower here
     // Position and size information
     this.x = x;
@@ -11,8 +11,8 @@ class FreeStyleObj {
     this.yOffset = 20;
     this.angularSpeed = .07;
     this.context = context;
-    this.analyser = analyser;
-    this.dataArray = dataArray;
+    this.analyser = null;
+    this.dataArray = null;
     this.volume = 0;
 
   }
