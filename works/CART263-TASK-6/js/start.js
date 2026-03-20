@@ -38,7 +38,7 @@ function go_all_stuff() {
 
     let drawingBoardC = new DrawingBoard(theCanvases[2], theContexts[2], theCanvases[2].id);
     //add a freestyle object to canvas C
-    drawingBoardC.addObj(new FreeStyleObj(10, 100, 300, "#CF9FFF", "#CF9FFF", drawingBoardC.context, analyser, dataArray));
+    drawingBoardC.addObj(new FreeStyleObj(10, 100, 300, "#CF9FFF", "#CF9FFF", drawingBoardC.context));
     drawingBoardC.display();
 
     let drawingBoardD = new DrawingBoard(theCanvases[3], theContexts[3], theCanvases[3].id);
@@ -108,7 +108,7 @@ function go_all_stuff() {
         const bufferLength = window.analyser.frequencyBinCount;
         window.dataArray = new Uint8Array(bufferLength);
 
-        console.log("MIC WORKING 🎤");
+        console.log("MIC WORKING ");
     }
 
     // start mic on first click
