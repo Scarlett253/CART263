@@ -18,39 +18,6 @@ export class PlanetA {
         //TODO: Use castShadow and receiveShadow on the mesh and all future ones so they can cast and receive shadows.
         //TODO: Add the planet mesh to the planet group.
 
-        // Create planet
-        // THEME: FROGS
-        // We present Sir Ivan Barr the Splurmf!
-        //STEP 1:
-        //TODO: Create a planet using THREE.SphereGeometry (Radius must be between 1.5 and 2).
-        const planetGeometry = new THREE.SphereGeometry(2, 32, 32);
-        //TODO: Give it a custom material using THREE.MeshStandardMaterial.
-        const planetMaterial = new THREE.MeshStandardMaterial({ color: "#8DA750" });
-        // TODO: Give the boy some eyes!
-        const eyeGeometry = new THREE.SphereGeometry(0.7, 16, 16);
-        const eyeMaterial = new THREE.MeshStandardMaterial({ color: "#FFFFFF" });
-        const leftEye = new THREE.Mesh(eyeGeometry, eyeMaterial);
-        const rightEye = new THREE.Mesh(eyeGeometry, eyeMaterial);
-        leftEye.position.set(-0.7, 0.5, 1.5);
-        rightEye.position.set(0.7, 0.5, 1.5);
-        this.group.add(leftEye);
-        this.group.add(rightEye);
-
-        const pupilGeometry = new THREE.SphereGeometry(0.6, 16, 16);
-        const pupilMaterial = new THREE.MeshStandardMaterial({ color: "#000000" });
-        const leftPupil = new THREE.Mesh(pupilGeometry, pupilMaterial);
-        const rightPupil = new THREE.Mesh(pupilGeometry, pupilMaterial);
-        leftPupil.position.set(-0.7, 0.5, 1.7);
-        rightPupil.position.set(0.7, 0.5, 1.7);
-        this.group.add(leftPupil);
-        this.group.add(rightPupil);
-        //TODO: Use castShadow and receiveShadow on the mesh and all future ones so they can cast and receive shadows.
-        planetMaterial.castShadow = true;
-        planetMaterial.receiveShadow = true;
-        //TODO: Add the planet mesh to the planet group.
-        this.planetMesh = new THREE.Mesh(planetGeometry, planetMaterial);
-        this.group.add(this.planetMesh);
-
         //STEP 2:
         //TODO: Add from 1 to 3 orbiting moons to the planet group.
         //TODO: The moons should rotate around the planet just like the planet group rotates around the Sun.
@@ -59,25 +26,44 @@ export class PlanetA {
         this.moons = [];
 
         // Creat 3 moons
-        const moonCount = Math.floor(Math.random() * 3) + 1;
+        const moonCount = 3;
         for (let i = 0; i < moonCount; i++) {
             //Pivot group for moon orbit
             const moonPivot = new THREE.Group();
 
-            //Moon mesh
+            /** Moon mesh */
             const moonGeometry = new THREE.SphereGeometry(0.4, 32, 32);
             const moonMaterial = new THREE.MeshStandardMaterial({
-                color: 0xaaaaff
+                color: 0x00ccff,
+                emissive: 0x003333,
+                emissiveIntensity: 0.6,
+                roughness: 0.4,
+                metalness: 0.2
             });
 
             const moon = new THREE.Mesh(moonGeometry, moonMaterial);
+
+            //Make them glow
+            const glowGeometry = new THREE.SphereGeometry(0.55, 32, 32);
+            const glowMaterial = new THREE.MeshBasicMaterial({
+                color: 0x00ffaa,
+                transparent: true,
+                opacity: 0.3,
+            });
+
+            const glow = new THREE.Mesh(glowGeometry, glowMaterial);
+            moon.add(glow);
+
+            //Add light
+            const moonLight = new THREE.PointLight(0x00ffaa, 0.5, 10);
+            moon.add(moonLight);
 
             //Shadows
             moon.castShadow = true;
             moon.receiveShadow = true;
 
             //Orbit radius moon and planet
-            moon.position.x = 3 + i * 1.5;
+            moon.position.x = 3 + i * 0.5;
 
             //Add moon to pivot group
             moonPivot.add(moon);
@@ -111,14 +97,15 @@ export class PlanetA {
         this.group.position.x = Math.cos(this.angle) * this.orbitRadius;
         this.group.position.z = Math.sin(this.angle) * this.orbitRadius;
 
+
+
+        //TODO: Do the moon orbits and the model animations here.
         // Rotate planet
         this.group.rotation.y += delta * 0.5;
         // Rotate moons
         this.moons.forEach(moon => {
             moon.pivot.rotation.y += delta * moon.speed;
         });
-
-        //TODO: Do the moon orbits and the model animations here.
     }
 
     click(mouse, scene, camera) {
