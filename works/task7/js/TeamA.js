@@ -18,6 +18,39 @@ export class PlanetA {
         //TODO: Use castShadow and receiveShadow on the mesh and all future ones so they can cast and receive shadows.
         //TODO: Add the planet mesh to the planet group.
 
+        // Create planet
+        // THEME: FROGS
+        // We present Sir Ivan Barr the Splurmf!
+        //STEP 1:
+        //TODO: Create a planet using THREE.SphereGeometry (Radius must be between 1.5 and 2).
+        const planetGeometry = new THREE.SphereGeometry(2, 32, 32);
+        //TODO: Give it a custom material using THREE.MeshStandardMaterial.
+        const planetMaterial = new THREE.MeshStandardMaterial({ color: "#8DA750" });
+        // TODO: Give the boy some eyes!
+        const eyeGeometry = new THREE.SphereGeometry(0.7, 16, 16);
+        const eyeMaterial = new THREE.MeshStandardMaterial({ color: "#FFFFFF" });
+        const leftEye = new THREE.Mesh(eyeGeometry, eyeMaterial);
+        const rightEye = new THREE.Mesh(eyeGeometry, eyeMaterial);
+        leftEye.position.set(-0.7, 0.5, 1.5);
+        rightEye.position.set(0.7, 0.5, 1.5);
+        this.group.add(leftEye);
+        this.group.add(rightEye);
+
+        const pupilGeometry = new THREE.SphereGeometry(0.6, 16, 16);
+        const pupilMaterial = new THREE.MeshStandardMaterial({ color: "#000000" });
+        const leftPupil = new THREE.Mesh(pupilGeometry, pupilMaterial);
+        const rightPupil = new THREE.Mesh(pupilGeometry, pupilMaterial);
+        leftPupil.position.set(-0.7, 0.5, 1.7);
+        rightPupil.position.set(0.7, 0.5, 1.7);
+        this.group.add(leftPupil);
+        this.group.add(rightPupil);
+        //TODO: Use castShadow and receiveShadow on the mesh and all future ones so they can cast and receive shadows.
+        planetMaterial.castShadow = true;
+        planetMaterial.receiveShadow = true;
+        //TODO: Add the planet mesh to the planet group.
+        this.planetMesh = new THREE.Mesh(planetGeometry, planetMaterial);
+        this.group.add(this.planetMesh);
+
         //STEP 2:
         //TODO: Add from 1 to 3 orbiting moons to the planet group.
         //TODO: The moons should rotate around the planet just like the planet group rotates around the Sun.
